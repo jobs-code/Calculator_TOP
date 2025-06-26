@@ -30,56 +30,63 @@ let opflag = 0; //to count operator
 let dflag = 0; // to count decimal 
 let op = /[+\-*%/]/; 
 
-btns.forEach((btn) =>{
-    
-    btn.addEventListener('click', ()=>{
+btns.forEach((btn) =>btn.addEventListener('click', ()=>displayInput(btn.textContent))); // for handling gui input.
+
+// for handling keyboard input
+document.addEventListener("keydown", (e)=>{
+    if (!isNaN(e.key) || op.test(e.key) || e.key === 'Backspace' || e.key === 'Enter'){
+        displayInput(e.key);
+    }
+})
+
+// for handling userinput in display
+function displayInput(inval){
         if (rstFlag)
         {
             rstFlag = false;
             display.textContent = '';
         }
-        if (btn.textContent === "AC")
+        if (inval === "AC")
         {
             display.textContent = '';
             rstFlag = true;
             opflag = 0;
             dflag = 0;
-        }else if (btn.textContent === "=")
+        }else if (inval === "=" || inval === "Enter")
         {
             compute(display.textContent);
             rstFlag = true;
-        }else if (btn.textContent === '.')
+            opflag = 0;
+        }else if (inval === '.')
         {
             if (dflag < 1){
-                display.textContent += btn.textContent;
+                display.textContent += inval;
                 dflag ++;
             }
         }
-        else if (btn.textContent === 'DEL')
+        else if (inval === 'DEL' || inval ==='Backspace')
         {
             display.textContent = display.textContent.slice(0,-1);
         }
-        else if (op.test(btn.textContent))
+        else if (op.test(inval))
         {
             dflag = 0;
             opflag ++;
-            let kval = btn.textContent;
+            let kval = inval;
             if (opflag == 2){
                 compute(display.textContent);
                 display.textContent += kval;
                 opflag = 1;
 
             }else{
-                display.textContent += btn.textContent;
+                display.textContent += inval;
             }
         }
         else
         {
-            display.textContent += btn.textContent;
-        }
+            display.textContent += inval;
+        }    
 }
-)}
-)
 
 
 //func to extract operands and operator from input
@@ -123,3 +130,6 @@ function compute(input){
         display.textContent = 'Error';
     }
 }
+
+
+
