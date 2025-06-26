@@ -6,14 +6,14 @@ A functional, browser-based calculator built with JavaScript, HTML, and CSS — 
 
 ## 📚 Table of Contents
 
-- [About](#about)
-- [Features](#features)
-- [What I Learned](#what-i-learned)
-- [Demo](#demo)
-- [Tech Stack](#tech-stack)
-- [Setup Instructions](#setup-instructions)
-- [Screenshots](#screenshots)
-- [Extra Credit Features](#extra-credit-features)
+- [About](##about)
+- [Features](##features)
+- [What I Learned](##what-i-learned)
+- [Demo](##demo)
+- [Tech Stack](##tech-stack)
+- [Setup Instructions](##setup-instructions)
+- [Screenshots](##screenshots)
+- [Extra Credit Features](##extra-credit-features)
 - [License](#license)
 - [Contact](#contact)
 
