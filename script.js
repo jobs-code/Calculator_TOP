@@ -1,21 +1,23 @@
+//Funcs for perform math operation.
 function add(a, b){
-    return (a + b).toFixed(2);
+    let out = a+b;
+    return Number.isInteger(a+b) ? (a+b).toString() : (a+b).toFixed(2); // to trim decimal up to 2
 }
 
 function sub(a, b){
-    return (a - b).toFixed(2);
+    return Number.isInteger(a - b) ? (a-b).toString() : (a-b).toFixed(2);
 }
 
 function mul(a, b){
-    return (a * b).toFixed(2);
+    return Number.isInteger(a * b) ? (a*b).toString():(a*b).toFixed(2);
 }
 
 function div(a, b){
-    return (a / b).toFixed(2);
+    return Number.isInteger(a / b)? (a/b).toString():(a/b).toFixed(2);
 }
 
 function mod(a, b){
-    return (a % b).toFixed(2);
+    return Number.isInteger(a % b)? (a%b).toString():(a%b).toFixed(2);
 }
 
 let display = document.querySelector("#display");
@@ -24,37 +26,55 @@ let btns = document.querySelectorAll('button');
 
 let rstFlag = true;
 
-let opflag = 0;
-let op = /[+\-*%/]/;
+let opflag = 0; //to count operator
+let dflag = 0; // to count decimal 
+let op = /[+\-*%/]/; 
 
 btns.forEach((btn) =>{
     
     btn.addEventListener('click', ()=>{
-        console.log(rstFlag)
-        if (rstFlag){
+        if (rstFlag)
+        {
             rstFlag = false;
             display.textContent = '';
         }
-        if (btn.textContent === "AC"){
+        if (btn.textContent === "AC")
+        {
             display.textContent = '';
-        }else if (btn.textContent === "="){
+            rstFlag = true;
+            opflag = 0;
+            dflag = 0;
+        }else if (btn.textContent === "=")
+        {
             compute(display.textContent);
             rstFlag = true;
-        }else if (btn.textContent === '.'){
-            console.log("call . func");
-            decimalCheck(display.textContent);
-        }else if (btn.textContent === 'DEL'){
+        }else if (btn.textContent === '.')
+        {
+            if (dflag < 1){
+                display.textContent += btn.textContent;
+                dflag ++;
+            }
+        }
+        else if (btn.textContent === 'DEL')
+        {
             display.textContent = display.textContent.slice(0,-1);
         }
-        else if (op.test(btn.textContent)){
+        else if (op.test(btn.textContent))
+        {
+            dflag = 0;
             opflag ++;
+            let kval = btn.textContent;
             if (opflag == 2){
-                console.log("call function");
+                compute(display.textContent);
+                display.textContent += kval;
+                opflag = 1;
+
             }else{
                 display.textContent += btn.textContent;
             }
-            
-        }else{
+        }
+        else
+        {
             display.textContent += btn.textContent;
         }
 }
@@ -62,7 +82,7 @@ btns.forEach((btn) =>{
 )
 
 
-
+//func to extract operands and operator from input
 function compute(input){
     if (input.includes('+')){
         let vals = input.split("+");
@@ -102,8 +122,4 @@ function compute(input){
     else{
         display.textContent = 'Error';
     }
-}
-
-function decimalCheck(input){
-    let 
 }
