@@ -23,7 +23,7 @@ A functional, browser-based calculator built with JavaScript, HTML, and CSS — 
 
 This project simulates a real-world calculator using vanilla JavaScript. The logic is entirely custom-built without relying on `eval()` for safety and learning. It supports chained operations, decimal inputs, keyboard functionality, and proper display behavior. It also gracefully handles divide-by-zero errors and invalid operations.
 
-![Default Layout](screenshots/s1.png)
+![Default Layout](screenshot/s1.png)
 ---
 
 ## ✨ Features
