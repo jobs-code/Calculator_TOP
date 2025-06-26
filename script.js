@@ -20,7 +20,7 @@ function mod(a, b){
     return Number.isInteger(a % b)? (a%b).toString():(a%b).toFixed(2);
 }
 
-let display = document.querySelector("#display");
+let display = document.querySelector("#display-text");
 
 let btns = document.querySelectorAll('button');
 
